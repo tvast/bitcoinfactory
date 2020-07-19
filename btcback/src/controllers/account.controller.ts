@@ -16,20 +16,20 @@ import {
   del,
   requestBody,
 } from '@loopback/rest';
-import {Account} from '../models';
-import {AccountRepository} from '../repositories';
+import { Account } from '../models';
+import { AccountRepository } from '../repositories';
 
 export class AccountController {
   constructor(
     @repository(AccountRepository)
-    public accountRepository : AccountRepository,
-  ) {}
+    public accountRepository: AccountRepository,
+  ) { }
 
   @post('/accounts', {
     responses: {
       '200': {
         description: 'Account model instance',
-        content: {'application/json': {schema: getModelSchemaRef(Account)}},
+        content: { 'application/json': { schema: getModelSchemaRef(Account) } },
       },
     },
   })
@@ -53,7 +53,7 @@ export class AccountController {
     responses: {
       '200': {
         description: 'Account model count',
-        content: {'application/json': {schema: CountSchema}},
+        content: { 'application/json': { schema: CountSchema } },
       },
     },
   })
@@ -71,7 +71,7 @@ export class AccountController {
           'application/json': {
             schema: {
               type: 'array',
-              items: getModelSchemaRef(Account, {includeRelations: true}),
+              items: getModelSchemaRef(Account, { includeRelations: true }),
             },
           },
         },
@@ -88,7 +88,7 @@ export class AccountController {
     responses: {
       '200': {
         description: 'Account PATCH success count',
-        content: {'application/json': {schema: CountSchema}},
+        content: { 'application/json': { schema: CountSchema } },
       },
     },
   })
@@ -96,7 +96,7 @@ export class AccountController {
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Account, {partial: true}),
+          schema: getModelSchemaRef(Account, { partial: true }),
         },
       },
     })
@@ -112,7 +112,7 @@ export class AccountController {
         description: 'Account model instance',
         content: {
           'application/json': {
-            schema: getModelSchemaRef(Account, {includeRelations: true}),
+            schema: getModelSchemaRef(Account, { includeRelations: true }),
           },
         },
       },
@@ -120,7 +120,7 @@ export class AccountController {
   })
   async findById(
     @param.path.string('id') id: string,
-    @param.filter(Account, {exclude: 'where'}) filter?: FilterExcludingWhere<Account>
+    @param.filter(Account, { exclude: 'where' }) filter?: FilterExcludingWhere<Account>
   ): Promise<Account> {
     return this.accountRepository.findById(id, filter);
   }
@@ -137,7 +137,7 @@ export class AccountController {
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Account, {partial: true}),
+          schema: getModelSchemaRef(Account, { partial: true }),
         },
       },
     })

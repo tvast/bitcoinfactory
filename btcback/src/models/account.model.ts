@@ -1,5 +1,5 @@
 import { Entity, model, property, belongsTo } from '@loopback/repository';
-import { User, UserWithRelations } from './user.model';
+import { User } from './user.model';
 
 @model({ settings: { strict: false } })
 export class Account extends Entity {
@@ -32,7 +32,7 @@ export class Account extends Entity {
   transaction?: object[];
 
   @belongsTo(() => User)
-  userId: number;
+  userId: string;
   // Define well-known properties here
 
   // Indexer property to allow additional data
@@ -46,7 +46,6 @@ export class Account extends Entity {
 
 export interface AccountRelations {
   // describe navigational properties here
-  accounts?: UserWithRelations[]
 }
 
 export type AccountWithRelations = Account & AccountRelations;

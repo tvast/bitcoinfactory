@@ -4,14 +4,14 @@
       <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" />
 
       <q-card-section>
-        <div class="text-overline text-orange-9">Overline</div>
-        <div class="text-h5 q-mt-sm q-mb-xs">{{name}}</div>
-        <div class="text-caption text-grey">{{email}}</div>
+        <div class="text-overline text-orange-9">{{user_name}}</div>
+        <div class="text-h5 q-mt-sm q-mb-xs">{{user_email}}</div>
+        <div class="text-caption text-grey">{{user_solde}}</div>
       </q-card-section>
 
       <q-card-actions>
-        <q-btn flat color="dark" label="Share" />
-        <q-btn flat color="primary" label="Book" />
+        <q-btn flat color="dark" label="profile" />
+        <q-btn flat color="primary" label="account" />
 
         <q-space />
 
@@ -28,7 +28,9 @@
       <q-slide-transition>
         <div v-show="expanded">
           <q-separator />
-          <q-card-section class="text-subitle2">{{ solde }}</q-card-section>
+          <!-- <div v-for="(item, index) in achatUser" :key="index">
+            <q-card-section class="text-subitle2">{{ item.achat }}</q-card-section>
+          </div>-->
         </div>
       </q-slide-transition>
     </q-card>
@@ -39,12 +41,10 @@
 export default {
   data() {
     return {
-      expanded: false,
-      lorem:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      expanded: false
     };
   },
   name: "card",
-  props: ["solde", "name", "email", "lorem"]
+  props: ["user_solde", "user_name", "user_email", , "achatUSer"]
 };
 </script>

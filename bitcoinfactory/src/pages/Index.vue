@@ -1,7 +1,11 @@
 <template>
   <q-page class="flex flex-center">
     <div v-for="(postit,index) in post" :key="index">
-      <card solde="1500" :name="postit.userName" :email="postit.userEmail"></card>
+      <card :user_solde="postit.transaction" :user_name="postit.sold" :user_email="postit.email"></card>
+      <!-- {{post}} -->
+    </div>
+    <div v-for="(ifoo,index) in userprofile" :key="index">
+      <card user_solde="1500" :user_name="ifoo.email" :user_email="ifoo.email"></card>
       <!-- {{post}} -->
     </div>
   </q-page>
@@ -15,15 +19,31 @@ export default {
   components: {
     card
   },
+  mounted() {
+    console.log(this);
+  },
   method: {},
   apollo: {
     post: {
       query: gql`
         query {
-          post: users {
+          post: accounts {
+            sold
+            transaction
+            id
             userId
-            userName
-            userEmail
+          }
+        }
+      `
+    },
+    userprofile: {
+      query: gql`
+        query {
+          userprofile: users {
+            name
+            lastname
+            email
+            id
           }
         }
       `
