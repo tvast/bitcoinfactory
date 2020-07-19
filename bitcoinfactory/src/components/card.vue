@@ -28,9 +28,10 @@
       <q-slide-transition>
         <div v-show="expanded">
           <q-separator />
-          <!-- <div v-for="(item, index) in achatUser" :key="index">
-            <q-card-section class="text-subitle2">{{ item.achat }}</q-card-section>
-          </div>-->
+          <!-- {{user_solde}} -->
+          <div v-for="(item, index) in user_achat" :key="index">
+            <q-card-section class="text-subitle2">achat : {{ item.achat }}</q-card-section>
+          </div>
         </div>
       </q-slide-transition>
     </q-card>
@@ -45,6 +46,6 @@ export default {
     };
   },
   name: "card",
-  props: ["user_solde", "user_name", "user_email", , "achatUSer"]
+  props: ["user_solde", "user_name", "user_email", "user_achat"]
 };
 </script>
