@@ -1,16 +1,22 @@
-import {BootMixin} from '@loopback/boot';
-import {ApplicationConfig} from '@loopback/core';
+import { BootMixin } from '@loopback/boot';
+import { ApplicationConfig } from '@loopback/core';
 import {
   RestExplorerBindings,
   RestExplorerComponent,
 } from '@loopback/rest-explorer';
-import {RepositoryMixin} from '@loopback/repository';
-import {RestApplication} from '@loopback/rest';
-import {ServiceMixin} from '@loopback/service-proxy';
+import { RepositoryMixin } from '@loopback/repository';
+import { RestApplication } from '@loopback/rest';
+import { ServiceMixin } from '@loopback/service-proxy';
 import path from 'path';
-import {MySequence} from './sequence';
-
-export {ApplicationConfig};
+import { MySequence } from './sequence';
+import { AuthenticationComponent } from '@loopback/authentication';
+import {
+  JWTAuthenticationComponent,
+  SECURITY_SCHEME_SPEC,
+  UserServiceBindings,
+} from '@loopback/authentication-jwt';
+import { BitcoinsafeDataSource } from './datasources';
+export { ApplicationConfig };
 
 export class BtcbackApplication extends BootMixin(
   ServiceMixin(RepositoryMixin(RestApplication)),
@@ -28,7 +34,7 @@ export class BtcbackApplication extends BootMixin(
     this.configure(RestExplorerBindings.COMPONENT).to({
       path: '/explorer',
     });
-    this.component(RestExplorerComponent);
+
 
     this.projectRoot = __dirname;
     // Customize @loopback/boot Booter Conventions here
@@ -40,5 +46,12 @@ export class BtcbackApplication extends BootMixin(
         nested: true,
       },
     };
-  }
+    this.component(RestExplorerComponent);
+    this.component(AuthenticationComponent);
+    // Mount jwt component
+    this.component(JWTAuthenticationComponent);
+    // Bind datasource
+    this.dataSource(BitcoinsafeDataSource, UserServiceBindings.DATASOURCE_NAME);
+  };
+
 }

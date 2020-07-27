@@ -1,7 +1,7 @@
-import {Entity, model, property, hasMany} from '@loopback/repository';
-import {Account} from './account.model';
+import { Entity, model, property, hasMany } from '@loopback/repository';
+import { Account } from './account.model';
 
-@model({settings: {strict: false}})
+@model({ settings: { strict: false } })
 export class User extends Entity {
   @property({
     type: 'string',
