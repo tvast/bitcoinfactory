@@ -153,7 +153,7 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .header-image {
   height: 100%;
   z-index: -1;

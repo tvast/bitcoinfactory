@@ -5,13 +5,14 @@
             <!-- About-->
             <section class="resume-section" id="about">
                 <div class="resume-section-content">
-                    <h1 class="mb-0">
-                        AN3ST3SIA
-                        <span class="text-primary">
+                    <h4 class="mb-0">
+                       <span class="text-primary">
     <vue-typed-js loop fadeOutClass :strings="['Hacker', 'Developer','Citizen','curious']">
   <h1>Hey <span class="typing"></span></h1>
-</vue-typed-js> curation</span>
-                    </h1>
+</vue-typed-js></span>
+ Welcome to th best tech source for your peronal knowledge management
+                        
+                    </h4>
                     <div class="subheading mb-5">
                         Our algorythm choose the best hacker link, follow us on telegram and ACAB ! ·
                         <a href="https://t.me/joinchat/AAAAAFeNdCqgR8mspAFAPQ">Go to telegram</a>

@@ -1,129 +1,75 @@
 <template>
   <q-page class="bg-grey-3 column">
+<template>
+  <div class="q-pa-md" >
+    <q-card>
+      <q-tabs
+        v-model="tab"
+        dense
+        class="text-grey"
+        active-color="primary"
+        indicator-color="accent"
+        align="justify"
+      >
+        <q-tab name="mails" label="Dev.to" />
+        <q-tab name="alarms" label="Your content" />
+        <q-tab name="movies" label="hackerNews" />
+      </q-tabs>
 
+      <q-separator />
 
-<div class="row center">
-  <template v-if="listOfarticle">
-     <q-card v-for="(item, index) in listOfarticle" :key="index" class="my-card col-5 q-px-lg q-pt-xl q-mb-md">
-      <template v-if="item.cover_image">
-      <q-parallax
-        :src="item.cover_image"
-        :height="150"
-      />
-  </template>
-  <template v-else>
-<q-parallax
-        src="../assets/matrix.jpg"
-        :height="150"
-      />
-  </template>
-      <q-card-section>
-        <div class="text-h6">{{item.title}}</div>
-        <div class="text-subtitle2">by John Doe</div>
-      </q-card-section>
-      
-      <q-card-actions>
-        <q-btn flat color="dark" label="Share" />
-        <q-btn flat color="primary" label="Book" />
+      <q-tab-panels v-model="tab" animated>
+        <q-tab-panel name="mails" class="q-pa-none">
+          <!-- <q-tab-panel name="mails"> -->
+          <div class="text-h6">Dev.to</div>
+          <devtofetch></devtofetch>
+        </q-tab-panel>
 
-        <q-space />
+          <q-splitter
+            v-model="splitterModel"
+            
+          >
 
-        <q-btn
-          color="grey"
-          round
-          flat
-          dense
-          :icon="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
-          @click="expanded = !expanded"
-        />
-      </q-card-actions>
+    
 
-      <q-slide-transition>
-        <div v-show="expanded">
-          <q-separator />
-          <q-card-section class="text-subitle2">
-            {{ item.description}}
-          </q-card-section>
-        </div>
-      </q-slide-transition>
+          </q-splitter>
+        </q-tab-panel>
+          
+
+        <q-tab-panel name="alarms">
+          <div class="text-h6">Your content</div>
+          <stackoverflowfetch></stackoverflowfetch>
+        </q-tab-panel>
+
+        <q-tab-panel name="movies">
+          <div class="text-h6">HackerNews</div>
+          <hackernewfetch></hackernewfetch>
+        </q-tab-panel>
+      </q-tab-panels>
     </q-card>
-    </template>
-    </div> 
+  </div>
+</template>s
+
   </q-page>
 </template>
 
 <script>
+import devtofetch from '../components/devtofetch.vue'
+import hackernewfetch from '../components/hackernewfetch.vue'
+import stackoverflowfetch from '../components/stackoverflowfetch.vue'
 export default {
+
+  components : {
+devtofetch,
+hackernewfetch,
+stackoverflowfetch
+  },
 data () {
     return {
-      expanded: false,
-      story : [
-        {
-          title : "test1",
-          content : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'"
-        },
-         {
-          title : "test2",
-          content : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'"
-        },
-         {
-          title : "test3",
-          content : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'"
-        },
-         {
-          title : "test4",
-          content : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'"
-        },
-         {
-          title : "test5",
-          content : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'"
-        },
-         {
-          title : "test6",
-          content : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'"
-        },
-         {
-          title : "test7",
-          content : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'"
-        },
-         {
-          title : "test8",
-          content : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'"
-        },
-         {
-          title : "test9",
-          content : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'"
-        },
-         {
-          title : "test10",
-          content : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'"
-        },
-         {
-          title : "test11",
-          content : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'"
-        }
-
-      ],
-      listOfarticle : null,
-      lorem: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+     tab: 'mails',
+      innerTab: 'innerMails',
+      splitterModel: 20
     }
-  
-  },methods : {
-    getDevtoArticle(){
-      let request= "https://dev.to/api/articles?tag=hack"
-     fetch(request) .then(function (res) {
-                return res.json();
-            })
-            .then(x=> {
-              this.listOfarticle = x
-                Console.log(x);
-            }).catch(function (err) {
-                console.log(err)
-            })
-    }
-  },
-    mounted() {
-        this.getDevtoArticle()
-    }
+  }
 }
 </script>
