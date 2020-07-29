@@ -1,15 +1,31 @@
 <template>
   <q-page class="bg-grey-3 column">
- <q-input rounded outlined v-model="inputSearch" label="Rounded outlined" />
+    <div class="q-pa-md" style="max-width: 350px">
+ <q-input class="q-px-lg q-pt-xl q-mb-md" rounded  v-model="inputSearch" label="Hack, Vue, Node, Linux..." />
 <!-- getDevtoArticle() -->
 
-<q-btn outline rounded @click="getDevtoArticle()" color="primary" label="Outline Rounded" />
+<q-btn sizes="md" rounded @click="getDevtoArticle()" color="primary" label="Search topics on Dev.to" />
+    </div>
 <q-separator />
-<div class="row center">
-  
-  <template v-if="listOfarticle">
-     <q-card v-for="(item, index) in listOfarticle" :key="index" class="my-card col-5 q-px-lg q-pt-xl q-mb-md">
-      <template v-if="item.cover_image">
+
+<template>
+  <div class="q-pa-md" >
+    <q-list bordered separator>
+            <q-intersection
+        v-for="(item, index) in listOfarticle" :key="index"
+        class="example-item"
+      >
+      <q-item class="q-px-lg q-pt-xl q-mb-md" >
+        <q-item-section>
+          <a :href="item.url"><q-item-label>{{item.title}}</q-item-label></a> 
+          <q-item-label caption>Author : {{item.user.name}}</q-item-label>
+          <q-item-label caption>Description :{{ item.description}}</q-item-label>
+        </q-item-section>
+
+        <q-item-section side top>
+          <q-item-label caption>Number of comments :{{item.comments_count}}</q-item-label>
+        </q-item-section>
+             <!-- <template v-if="item.cover_image">
       <q-parallax
         :src="item.social_image"
         :height="100" :speed="0.9"
@@ -20,40 +36,13 @@
         src="../assets/matrix.jpg"
         :height="100" :speed="0.5"
       />
-  </template>
-      <q-card-section>
-        <a :href="item.url"><div  class="text-h6">{{item.title}}</div> </a>
-        <div class="text-subtitle2">by John Doe</div>
-      </q-card-section>
-      
-      <q-card-actions>
-        <q-btn flat color="dark" label="Share" />
-        <q-btn flat color="primary" label="Book" />
-
-        <q-space />
-
-        <q-btn
-          color="grey"
-          round
-          flat
-          dense
-          :icon="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
-          @click="expanded = !expanded"
-        />
-      </q-card-actions>
-
-      <q-slide-transition>
-        <div v-show="expanded">
-          <q-separator />
-          <q-card-section class="text-subitle2">
-            {{ item.description}}
-          </q-card-section>
-        </div>
-      </q-slide-transition>
-    </q-card>
+  </template> -->
+      </q-item>
    
-    </template>
-    </div> 
+      </q-intersection>
+    </q-list>
+  </div>
+</template>
   </q-page>
 </template>
 

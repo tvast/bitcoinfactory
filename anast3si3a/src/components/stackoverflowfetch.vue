@@ -5,7 +5,7 @@
 
 <template>
   <div v-if="listOfarticleHN" class="q-pa-md" >
-    <q-list>
+    <q-list bordered separator>
       <q-item class="q-px-lg q-pt-xl q-mb-md" v-for="(item, index) in listOfarticleHN" :key="index">
         <q-item-section>
           <a :href="item.link"><q-item-label>{{item.title}}</q-item-label></a> 

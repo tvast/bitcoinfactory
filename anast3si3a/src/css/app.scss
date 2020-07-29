@@ -1,1 +1,18 @@
 // app global css in SCSS form
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Zetta&family=Montserrat+Alternates:wght@500&display=swap');
+body {
+    // font-family: 'Montserrat Alternates', sans-serif;
+    font-family: 'Lexend Zetta', sans-serif;
+}
+
+.q-item {
+    background: white;
+    border-radius: 15px 50px 30px;
+}
+
+a {
+    color: tomato;
+     // font-family: 'Montserrat Alternates', sans-serif
+     text-decoration: none;
+     padding-bottom: 2%;
+}

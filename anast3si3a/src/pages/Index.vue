@@ -21,7 +21,7 @@
       <q-tab-panels v-model="tab" animated>
         <q-tab-panel name="mails" class="q-pa-none">
           <!-- <q-tab-panel name="mails"> -->
-          <div class="text-h6">Dev.to</div>
+          <!-- <div class="text-h6">Dev.to</div> -->
           <devtofetch></devtofetch>
         </q-tab-panel>
 
@@ -37,12 +37,12 @@
           
 
         <q-tab-panel name="alarms">
-          <div class="text-h6">Hackernoon</div>
+          <!-- <div class="text-h6">Hackernoon</div> -->
           <stackoverflowfetch></stackoverflowfetch>
         </q-tab-panel>
 
         <q-tab-panel name="movies">
-          <div class="text-h6">HackerNews</div>
+          <!-- <div class="text-h6">HackerNews</div> -->
           <hackernewfetch></hackernewfetch>
         </q-tab-panel>
       </q-tab-panels>

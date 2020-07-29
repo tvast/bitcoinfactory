@@ -4,7 +4,7 @@
 
 <template>
   <div class="q-pa-md" >
-    <q-list>
+    <q-list bordered separator>
       <q-item class="q-px-lg q-pt-xl q-mb-md" v-for="(item, index) in listOfarticleHN" :key="index">
         <q-item-section>
           <a :href="item.url"><q-item-label>{{item.title}}</q-item-label></a> 
@@ -47,7 +47,7 @@ data () {
     //         })
     // },
         getHackernews(){
-      let request= "http://hn.algolia.com/api/v1/search?tags=front_page"
+      let request= "https://hn.algolia.com/api/v1/search?tags=front_page"
      fetch(request) .then(function (res) {
                 return res.json();
             })

@@ -8,7 +8,7 @@
                     <h4 class="mb-0">
                        <span class="text-primary">
     <vue-typed-js loop fadeOutClass :strings="['Hacker', 'Developer','Citizen','curious']">
-  <h1>Hey <span class="typing"></span></h1>
+  <h3>Hey <span class="typing"></span></h3>
 </vue-typed-js></span>
  Welcome to th best tech source for your peronal knowledge management
                         
