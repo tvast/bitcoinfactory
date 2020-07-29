@@ -12,7 +12,7 @@
         align="justify"
       >
         <q-tab name="mails" label="Dev.to" />
-        <q-tab name="alarms" label="Your content" />
+        <q-tab name="alarms" label="Hackernoon" />
         <q-tab name="movies" label="hackerNews" />
       </q-tabs>
 
@@ -37,7 +37,7 @@
           
 
         <q-tab-panel name="alarms">
-          <div class="text-h6">Your content</div>
+          <div class="text-h6">Hackernoon</div>
           <stackoverflowfetch></stackoverflowfetch>
         </q-tab-panel>
 

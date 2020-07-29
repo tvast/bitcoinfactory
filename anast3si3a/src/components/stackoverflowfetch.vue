@@ -2,131 +2,72 @@
 <template>
   <q-page class="bg-grey-3 column">
 
-    <h3>Your inspiration start know</h3>
 
-    <form
-  autocorrect="off"
-  autocapitalize="off"
-  autocomplete="off"
-  spellcheck="false"
->
-  <div class="q-pa-md q-gutter-sm">
-    <q-editor
-      v-model="qeditor"
-      :dense="$q.screen.lt.md"
-      :toolbar="[
-        [
-          {
-            label: $q.lang.editor.align,
-            icon: $q.iconSet.editor.align,
-            fixedLabel: true,
-            list: 'only-icons',
-            options: ['left', 'center', 'right', 'justify']
-          },
-          {
-            label: $q.lang.editor.align,
-            icon: $q.iconSet.editor.align,
-            fixedLabel: true,
-            options: ['left', 'center', 'right', 'justify']
-          }
-        ],
-        ['bold', 'italic', 'strike', 'underline', 'subscript', 'superscript'],
-        ['token', 'hr', 'link', 'custom_btn'],
-        ['print', 'fullscreen'],
-        [
-          {
-            label: $q.lang.editor.formatting,
-            icon: $q.iconSet.editor.formatting,
-            list: 'no-icons',
-            options: [
-              'p',
-              'h1',
-              'h2',
-              'h3',
-              'h4',
-              'h5',
-              'h6',
-              'code'
-            ]
-          },
-          {
-            label: $q.lang.editor.fontSize,
-            icon: $q.iconSet.editor.fontSize,
-            fixedLabel: true,
-            fixedIcon: true,
-            list: 'no-icons',
-            options: [
-              'size-1',
-              'size-2',
-              'size-3',
-              'size-4',
-              'size-5',
-              'size-6',
-              'size-7'
-            ]
-          },
-          {
-            label: $q.lang.editor.defaultFont,
-            icon: $q.iconSet.editor.font,
-            fixedIcon: true,
-            list: 'no-icons',
-            options: [
-              'default_font',
-              'arial',
-              'arial_black',
-              'comic_sans',
-              'courier_new',
-              'impact',
-              'lucida_grande',
-              'times_new_roman',
-              'verdana'
-            ]
-          },
-          'removeFormat'
-        ],
-        ['quote', 'unordered', 'ordered', 'outdent', 'indent'],
+<template>
+  <div v-if="listOfarticleHN" class="q-pa-md" >
+    <q-list>
+      <q-item class="q-px-lg q-pt-xl q-mb-md" v-for="(item, index) in listOfarticleHN" :key="index">
+        <q-item-section>
+          <a :href="item.link"><q-item-label>{{item.title}}</q-item-label></a> 
+          <q-item-label caption>{{item.author}}</q-item-label>
+        </q-item-section>
 
-        ['undo', 'redo'],
-        ['viewsource']
-      ]"
-      :fonts="{
-        arial: 'Arial',
-        arial_black: 'Arial Black',
-        comic_sans: 'Comic Sans MS',
-        courier_new: 'Courier New',
-        impact: 'Impact',
-        lucida_grande: 'Lucida Grande',
-        times_new_roman: 'Times New Roman',
-        verdana: 'Verdana'
-      }"
-    />
+        <!-- <q-item-section side top>
+          <q-item-label caption>Number of comments :{{item.author}}</q-item-label>
+        </q-item-section> -->
+
+       
+      </q-item>
+      <q-separator spaced inset />
+    </q-list>
   </div>
-</form>
-
-
-
+</template>
   </q-page>
 </template>
 
 <script>
-
 export default {
 data () {
     return {
       expanded: false,
-      qeditor:'Tell us your mlast hack',
      
     //   listOfarticle : null,
-      listOfarticleSO : [],
+      listOfarticleHN : null,
+      lorem: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
     }
   
   },methods : {
- 
+    // getDevtoArticle(){
+    //   let request= "https://dev.to/api/articles?tag=hack"
+    //  fetch(request) .then(function (res) {
+    //             return res.json();
+    //         })
+    //         .then(x=> {
+    //           this.listOfarticle = x
+    //             console.log(x);
+    //         }).catch(function (err) {
+    //             console.log(err)
+    //         })
+    // },
+        getHackernews(){
+      let request= "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fhackernoon.com%2Ffeed"
 
+
+
+     fetch(request) .then(function (res) {
+                return res.json();
+            })
+            .then(x=> {
+              this.listOfarticleHN = x.items
+                console.log(x);
+            }).catch(function (err) {
+                console.log(err)
+            })
+    }
   },
     mounted() {
-       
-       
+        // this.getDevtoArticle();
+        this.getHackernews();
     }
 }
 </script>
